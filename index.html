@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ImagiGenie - Free AI-powered image generator. Create stunning visuals with simple text prompts using our AI magic.">
+    <meta name="keywords" content="AI image generator, free image creator, text to image, AI art, image from text">
+    <title>ImagiGenie - Free AI Image Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>ImagiGenie</h1>
+                <p>AI-Powered Image Generator</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Turn Your Imagination Into Art</h2>
+                    <p>Create stunning AI-generated images with simple text prompts. No design skills required!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="generator-section">
+            <div class="container">
+                <div class="generator-box">
+                    <div class="input-section">
+                        <h3>Describe Your Image</h3>
+                        <textarea id="prompt-input" placeholder="A futuristic cityscape at sunset with flying cars..."></textarea>
+                        <div class="options">
+                            <div class="option-group">
+                                <label for="style-select">Art Style:</label>
+                                <select id="style-select">
+                                    <option value="realistic">Realistic</option>
+                                    <option value="cartoon">Cartoon</option>
+                                    <option value="3d-render">3D Render</option>
+                                    <option value="pixel-art">Pixel Art</option>
+                                    <option value="watercolor">Watercolor</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label for="size-select">Image Size:</label>
+                                <select id="size-select">
+                                    <option value="512x512">512x512</option>
+                                    <option value="768x768">768x768</option>
+                                    <option value="1024x1024">1024x1024</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="generate-btn">Generate Image</button>
+                    </div>
+                    <div class="output-section">
+                        <div class="image-placeholder" id="image-result">
+                            <i class="fas fa-image"></i>
+                            <p>Your generated image will appear here</p>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="download-btn" disabled>Download</button>
+                            <button id="share-btn" disabled>Share</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2>Powerful Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-magic"></i>
+                        <h3>Text-to-Image</h3>
+                        <p>Transform your text descriptions into beautiful images with our advanced AI technology.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Multiple Styles</h3>
+                        <p>Choose from various art styles to match your creative vision.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Fast Generation</h3>
+                        <p>Get your AI-generated images in seconds, not hours.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-lock-open"></i>
+                        <h3>Free to Use</h3>
+                        <p>No hidden costs - generate images for free with our tool.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How ImagiGenie Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Describe Your Vision</h3>
+                        <p>Type a detailed description of the image you want to create.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Customize Settings</h3>
+                        <p>Select your preferred art style and image size.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Generate & Download</h3>
+                        <p>Let our AI work its magic and download your creation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">Is ImagiGenie really free to use?<i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Yes! ImagiGenie is completely free to use. We may introduce premium features in the future, but the basic image generation will always remain free.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What kind of images can I create?<i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>You can create virtually any type of image - landscapes, portraits, abstract art, product concepts, and more. Just describe what you want to see!</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How long does image generation take?<i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Typically, image generation takes between 10-30 seconds depending on server load and image complexity.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I use the images commercially?<i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer">
+                            <p>Yes, all images generated with ImagiGenie are free for personal and commercial use. However, we recommend reviewing the specific API's terms of service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>ImagiGenie</h3>
+                    <p>Turning imagination into reality with AI</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ImagiGenie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
