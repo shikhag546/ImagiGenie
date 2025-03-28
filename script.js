@@ -34,50 +34,57 @@ document.addEventListener('DOMContentLoaded', function() {
     // - OpenAI DALL-E (if you have access)
     
     async function generateImage() {
-        const prompt = promptInput.value.trim();
-        const style = styleSelect.value;
-        const size = sizeSelect.value;
-        
-        if (!prompt) {
-            alert('Please enter a description for your image');
-            return;
-        }
-        
-        // Show loading state
-        generateBtn.disabled = true;
-        generateBtn.textContent = 'Generating...';
-        imageResult.innerHTML = '<i class="fas fa-spinner fa-spin"></i><p>Creating your image...</p>';
-        
-        try {
-            // In a real implementation, you would call an actual API here
-            // This is a mock implementation for demonstration
-            
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-            // For demo purposes, we'll use a placeholder service
-            // Note: This is just for testing - in production, use a real API
-            const [width, height] = size.split('x').map(Number);
-            const placeholderUrl = `https://placehold.co/${width}x${height}/6c5ce7/white?text=${encodeURIComponent(prompt)}`;
-            
-            // Display the "generated" image
-            imageResult.innerHTML = `<img src="${placeholderUrl}" alt="Generated image from prompt: ${prompt}">`;
-            
-            // Enable download and share buttons
-            downloadBtn.disabled = false;
-            shareBtn.disabled = false;
-            
-            // Store the image URL for download/share
-            imageResult.dataset.imageUrl = placeholderUrl;
-            
-        } catch (error) {
-            console.error('Error generating image:', error);
-            imageResult.innerHTML = '<i class="fas fa-exclamation-triangle"></i><p>Error generating image. Please try again.</p>';
-        } finally {
-            generateBtn.disabled = false;
-            generateBtn.textContent = 'Generate Image';
-        }
+    const prompt = promptInput.value.trim();
+    const style = styleSelect.value;
+    const size = sizeSelect.value;
+
+    if (!prompt) {
+        alert("Please enter a description for your image");
+        return;
     }
+
+    // Show loading state
+    generateBtn.disabled = true;
+    generateBtn.textContent = "Generating...";
+    imageResult.innerHTML = '<i class="fas fa-spinner fa-spin"></i><p>Creating your image...</p>';
+
+    try {
+        const response = await fetch("https://stablediffusionapi.com/api/v3/text2img", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                key: "HKKefIrQKbqQjTJN2p9cQIx4OQtjwiBuJ4UEVCFR3LoELy7q4mkX5RUEfM8k", // Replace with your key
+                prompt: prompt,
+                width: size.split("x")[0],
+                height: size.split("x")[1],
+                samples: 1,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (data.status === "error") {
+            throw new Error(data.message);
+        }
+
+        // Display the generated image
+        const imageUrl = data.output[0];
+        imageResult.innerHTML = `<img src="${imageUrl}" alt="Generated image: ${prompt}">`;
+
+        // Enable download/share
+        downloadBtn.disabled = false;
+        shareBtn.disabled = false;
+        imageResult.dataset.imageUrl = imageUrl;
+    } catch (error) {
+        console.error("API Error:", error);
+        imageResult.innerHTML = `<i class="fas fa-exclamation-triangle"></i><p>Error: ${error.message}</p>`;
+    } finally {
+        generateBtn.disabled = false;
+        generateBtn.textContent = "Generate Image";
+    }
+}
     
     function downloadImage() {
         const imageUrl = imageResult.dataset.imageUrl;
