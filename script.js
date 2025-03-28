@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function generateImage() {
     const prompt = promptInput.value.trim();
-    const style = styleSelect.value;
     const size = sizeSelect.value;
+    const [width, height] = size.split("x").map(Number);
 
     if (!prompt) {
-        alert("Please enter a description for your image");
+        alert("Please enter a description!");
         return;
     }
 
@@ -51,32 +51,33 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         const response = await fetch("https://stablediffusionapi.com/api/v3/text2img", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                key: "HKKefIrQKbqQjTJN2p9cQIx4OQtjwiBuJ4UEVCFR3LoELy7q4mkX5RUEfM8k", // Replace with your key
+                key: "YOUR_API_KEY_HERE", // Replace with your actual API key
                 prompt: prompt,
-                width: size.split("x")[0],
-                height: size.split("x")[1],
-                samples: 1,
+                width: width,
+                height: height,
+                samples: 1, // Number of images to generate
+                num_inference_steps: 20, // More steps = better quality (but slower)
             }),
         });
 
         const data = await response.json();
 
+        // Check for API errors
         if (data.status === "error") {
-            throw new Error(data.message);
+            throw new Error(data.message || "API Error");
         }
 
         // Display the generated image
-        const imageUrl = data.output[0];
-        imageResult.innerHTML = `<img src="${imageUrl}" alt="Generated image: ${prompt}">`;
+        const imageUrl = data.output?.[0]; // Check if output exists
+        if (!imageUrl) throw new Error("No image URL in response");
 
-        // Enable download/share
+        imageResult.innerHTML = `<img src="${imageUrl}" alt="AI Generated Image">`;
         downloadBtn.disabled = false;
         shareBtn.disabled = false;
         imageResult.dataset.imageUrl = imageUrl;
+
     } catch (error) {
         console.error("API Error:", error);
         imageResult.innerHTML = `<i class="fas fa-exclamation-triangle"></i><p>Error: ${error.message}</p>`;
