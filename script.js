@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                key: "YOUR_API_KEY_HERE", // Replace with your actual API key
+                key: "edrp8Bi3C7ZEmZEMUtQpejd75Cj9QfgMkZwYZXVKYlIdkUV9rHBnKl8N0tv2", // Replace with your actual API key
                 prompt: prompt,
                 width: width,
                 height: height,
