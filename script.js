@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // - DeepAI (https://deepai.org/machine-learning-model/text2img)
     // - OpenAI DALL-E (if you have access)
     
-    async function generateImage() {
+   async function generateImage() {
     const prompt = promptInput.value.trim();
     const size = sizeSelect.value;
     const [width, height] = size.split("x").map(Number);
@@ -85,8 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         generateBtn.disabled = false;
         generateBtn.textContent = "Generate Image";
     }
-}
-    
+}   
     function downloadImage() {
         const imageUrl = imageResult.dataset.imageUrl;
         if (!imageUrl) return;
